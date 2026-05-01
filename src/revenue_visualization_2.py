@@ -17,13 +17,18 @@ pivot_table = weekly_rev.pivot(index='Year', columns='Week', values='Rev_Share')
 # 3. Khởi tạo biểu đồ
 fig, ax = plt.subplots(figsize=(24, 8), facecolor='white')
 
+# --- TÍNH TOÁN MEDIAN ĐỂ CENTER SCALE MÀU ---
+median_val = pivot_table.median().median()
+
 # 4. Vẽ Heatmap
 sns.heatmap(pivot_table, 
-            cmap='YlOrRd', 
+            cmap='RdYlGn',            # Đổi sang hệ màu Đỏ - Vàng - Xanh giống code trước
             cbar_kws={'label': '% of annual rev'},
             linewidths=0.05, 
             linecolor='lightgray',
-            ax=ax)
+            ax=ax,
+            robust=True,              # Tự động điều chỉnh dải màu bỏ qua ngoại lai
+            center=median_val)        # Cân bằng màu xung quanh giá trị trung vị
 
 # 5. Tùy chỉnh Nhãn & Tiêu đề
 ax.set_title('Heatmap: Tuần × Năm — Revenue share (% năm)\nCác cột dọc = PATTERN GIỐNG HỆT nhau qua mọi năm', 
@@ -68,5 +73,5 @@ for start_idx, end_idx, name in periods_intervals:
 
 # 7. Lưu file
 plt.tight_layout()
-plt.savefig('heatmap_percent_phases.png', dpi=300, bbox_inches='tight')
+plt.savefig('heatmap_percent_phase.png', dpi=300, bbox_inches='tight')
 print("Đã lưu biểu đồ thành công vào file 'heatmap_percent_phases.png'")
