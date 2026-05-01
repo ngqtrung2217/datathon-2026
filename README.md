@@ -104,8 +104,4 @@ Dự án tập trung vào phân tích:
 
 ## 👤 Tác Giả
 
-Datathon 2026 Project
-
-## 📄 Giấy Phép
-
-Dự án này được tạo cho mục đích phân tích dữ liệu và học tập.
+Team Chobua - VinDatathon 2026
